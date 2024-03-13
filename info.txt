@@ -1,0 +1,28 @@
+
+USERS APIs:-
+
+REGISTER USERS
+POST  ==>  http://localhost:7070/api/users/register
+{
+    "name" : "sf",
+    "role" : "donar",
+    "email" : "sf@gmail.com",
+    "password" : "123",
+    "address" : "Mh",
+    "phone" : "7769"
+}
+
+
+LOGIN USER
+POST  ==>  http://localhost:7070/api/users/login
+{
+    "email" : "sf@gmail.com",
+    "password" : "123"
+}
+
+
+GET CURRENT USER
+GET  ==>  http://localhost:7070/api/users/current-user
+
+curl --location 'http://localhost:7070/api/users/current-user' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjAxMTEwNmU5ZWRiYjJkZjYyZDIzMiIsImlhdCI6MTcxMDMxNDY2OSwiZXhwIjoxNzEwOTE5NDY5fQ.w3aHuhqmjLCzpnJt-9HMMoILyL_dhc8vKwwmfYKO6jk'
