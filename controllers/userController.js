@@ -1,5 +1,7 @@
+import { generateToken } from "../helper/generateToken.js"
 import UserModel from "../models/userModel.js"
 import bcrypt from 'bcryptjs'
+
 
 export const registerUser = async (req, res) =>{
     try {
@@ -27,6 +29,43 @@ export const registerUser = async (req, res) =>{
         res.status(500).json({
             success : false,
             message : "Error while registering user",
+            error : error.message
+        })
+    }
+}
+
+
+export const loginUser = async (req, res) =>{
+    try {
+        // check if user is exists or not
+        const user = await UserModel.findOne({email : req.body.email})
+        if(!user){
+            return res.status(404).json({
+                success : false,
+                message : "User not found, register first",
+            })
+        }
+        // if user is there and we will verify his password
+        const comparePassword = await bcrypt.compare(req.body.password, user.password)
+        if(!comparePassword){
+            return res.status(404).json({
+                success : false,
+                message : "Invalid Credentials"
+            })
+        }
+
+        // if everything works fine after that we will generate the token
+        const token =  generateToken(user)
+        res.status(201).json({
+            success : true,
+            message : `Welcome ${user.name}`,
+            token : token,
+            user : user
+        })
+    } catch (error) {
+        res.status(500).json({
+            success : false,
+            message : "Error while login user",
             error : error.message
         })
     }
