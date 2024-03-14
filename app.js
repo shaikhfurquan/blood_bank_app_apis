@@ -4,6 +4,7 @@ import connectDB from './db/connectDB.js';
 import morgan from 'morgan';
 import cors from 'cors';
 import userRouter from './routes/userRoute.js';
+import inventoryRouter from './routes/inventoryRoute.js';
 dotenv.config()
 
 
@@ -19,6 +20,7 @@ app.use(cors())
 
 //routes
 app.use('/api/users' , userRouter)
+app.use('/api/inventory' , inventoryRouter)
 
 
 //DB connection
