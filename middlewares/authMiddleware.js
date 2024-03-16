@@ -3,9 +3,9 @@ import JWT from 'jsonwebtoken'
 
 export const isAuthenticated = async(req, res, next) => {
     try {
-        console.log("isAuthenticated");
+
         const token = req.headers['authorization'].split(" ")[1]
-        console.log("token" , token);
+
         if (!token) {
             return res.status(401).json({
                 success: false,
