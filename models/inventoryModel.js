@@ -5,7 +5,7 @@ const inventorySchema = new mongoose.Schema({
     inventoryType: {
         type: String,
         required: [true, 'Inventory type is required'],
-        enum: ['in', 'out']
+        enum: ['incoming', 'outgoing']
     },
     bloodGroup: {
         type: String,
@@ -27,14 +27,14 @@ const inventorySchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: function () {
-            return this.inventoryType === 'out'
+            return this.inventoryType === 'outgoing'
         }
     },
     donar: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: function () {
-            return this.inventoryType === 'in'
+            return this.inventoryType === 'incoming'
         }
     }
 }, { timestamps: true });
