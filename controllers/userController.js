@@ -45,6 +45,14 @@ export const loginUser = async (req, res) => {
                 message: "User not found, register first",
             })
         }
+        //checking user role
+        if(user.role !== req.body.role){
+            return res.status(500).json({
+                success: false,
+                message: "Role does not match"
+            })
+        }
+
         // if user is there and we will verify his password
         const comparePassword = await bcrypt.compare(req.body.password, user.password)
         if (!comparePassword) {
