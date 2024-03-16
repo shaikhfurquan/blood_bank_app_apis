@@ -2,6 +2,8 @@
 USERS APIs:-
 
 REGISTER USERS
+// for donar registration
+
 POST  ==>  http://localhost:7070/api/users/register
 {
     "name" : "sf",
@@ -12,6 +14,45 @@ POST  ==>  http://localhost:7070/api/users/register
     "phone" : "7769"
 }
 
+curl --location 'http://localhost:7070/api/users/register' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name" : "kp",
+    "role" : "donar",
+    "email" : "kp@gmail.com",
+    "password" : "123",
+    "address" : "Mh",
+    "phone" : "7769"
+}'
+
+
+
+
+// for organization registration
+
+POST  ==>  http://localhost:7070/api/users/register
+{
+    "organizationName" : "aims",
+    "role" : "organization",
+    "email" : "aims@gmail.com",
+    "password" : "123",
+    "address" : "Mh",
+    "phone" : "7769"
+}
+
+curl --location 'http://localhost:7070/api/users/register' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "organizationName" : "aims",
+    "role" : "organization",
+    "email" : "aims@gmail.com",
+    "password" : "123",
+    "address" : "Mh",
+    "phone" : "7769"
+}'
+
+
+
 
 LOGIN USER
 POST  ==>  http://localhost:7070/api/users/login
@@ -20,9 +61,51 @@ POST  ==>  http://localhost:7070/api/users/login
     "password" : "123"
 }
 
+curl --location 'http://localhost:7070/api/users/login' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email" : "sf@gmail.com",
+    "password" : "123",
+    "role" : "donar"
+}'
+
+
 
 GET CURRENT USER
 GET  ==>  http://localhost:7070/api/users/current-user
 
 curl --location 'http://localhost:7070/api/users/current-user' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjAxMTEwNmU5ZWRiYjJkZjYyZDIzMiIsImlhdCI6MTcxMDMxNDY2OSwiZXhwIjoxNzEwOTE5NDY5fQ.w3aHuhqmjLCzpnJt-9HMMoILyL_dhc8vKwwmfYKO6jk'
+
+
+
+
+==================================================================================================================================
+==================================================================================================================================
+
+
+INVENTORY APIs
+CREATE INVENTORY
+POST  ==>  http://localhost:7070/api/inventory/create-inventory
+{
+    "inventoryType": "incoming",
+    "bloodGroup": "O+",
+    "quantity": 10,
+    "organization": "65f49ec0ebe61ee376609037",
+    "donar": "65f1b29e032200bbf82158ec",
+    "email" : "sf@gmail.com"
+}
+
+
+curl --location 'http://localhost:7070/api/inventory/create-inventory' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjFiMjllMDMyMjAwYmJmODIxNThlYyIsImlhdCI6MTcxMDUyOTA1NywiZXhwIjoxNzExMTMzODU3fQ.Xnj1RHvjexP9wdJoDH4CLmhoXq85YLwzL6gasH73ODo' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "inventoryType": "incoming",
+    "bloodGroup": "O+",
+    "quantity": 10,
+    "organization": "65f49ec0ebe61ee376609037",
+    "donar": "65f1b29e032200bbf82158ec",
+    "email" : "sf@gmail.com"
+}
+'
